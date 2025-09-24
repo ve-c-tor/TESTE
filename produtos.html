@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produtos</title>
+  <link rel="icon" href="imagens/logo.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" href="imagens/logo.jpg">
+  <style>
+    /* RESET */
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:Arial, Helvetica, sans-serif;line-height:1.6;color:#333;scroll-behavior:smooth;background:#f9fbfd}
+    img{max-width:100%;display:block}
+
+    /* Barra superior */
+    .topbar{background:linear-gradient(90deg,#0077b6,#00b4d8);color:#fff;font-size:14px;padding:8px 0}
+    .topbar .container{max-width:1200px;margin:0 auto;padding:0 15px;display:flex;justify-content:space-between;align-items:center}
+    .topbar-item{display:flex;align-items:center;gap:6px}
+    .topbar-item i{color:#ffd700}
+    .topbar-item a{color:#fff;text-decoration:none;transition:color .3s}
+    .topbar-item a:hover{color:#ffd700}
+
+    /* Cabeçalho fixo */
+    .site-header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:100}
+    .header-inner{max-width:1200px;margin:auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+    .logo{height:50px}
+    .nav a{margin-left:20px;color:#0077b6;text-decoration:none;font-weight:bold;transition:color .3s}
+    .nav a:hover,.nav .active{color:#ffd700}
+   /* Dropdown Produtos */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  min-width: 260px;
+  max-height: 400px; /* limite de altura para não ficar gigante */
+  overflow-y: auto;  /* adiciona scroll interno */
+  box-shadow: 0px 6px 16px rgba(0,0,0,0.15);
+  border-radius: 10px;
+  display: none;
+  flex-direction: column;
+  padding: 8px 0;
+  z-index: 1000;
+}
+
+/* Scroll mais elegante */
+.dropdown-content::-webkit-scrollbar {
+  width: 6px;
+}
+.dropdown-content::-webkit-scrollbar-thumb {
+  background: #0077b6;
+  border-radius: 4px;
+}
+.dropdown-content::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+/* Links do menu */
+.dropdown-content a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #0077b6;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s, padding-left 0.3s;
+}
+
+/* Ícones */
+.dropdown-content a i {
+  font-size: 1rem;
+  color: #00b4d8;
+  width: 20px;
+  text-align: center;
+}
+
+/* Hover elegante */
+.dropdown-content a:hover {
+  background: #eaf6ff;
+  padding-left: 22px; /* pequeno efeito de deslocamento */
+  border-left: 4px solid #ffd700;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+    /* Hero */
+    .hero{
+      height:60vh;background:url("imagens/logo_vetorizado.svg") center/cover no-repeat;
+      position:relative;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;
+    }
+    .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.55)}
+    .hero-content{position:relative;z-index:1;max-width:700px;animation:fadeInUp 1s ease forwards}
+    .hero h1{font-size:3rem;margin-bottom:15px;text-shadow:2px 2px 6px rgba(0,0,0,0.5)}
+    .hero p{margin-bottom:20px;font-size:1.2rem}
+
+    /* Cards genéricos */
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;margin-top:20px}
+    .card{
+      background:#fff;padding:25px;border-radius:15px;text-align:center;
+      box-shadow:0 6px 15px rgba(0,0,0,0.1);transition:transform .3s ease, box-shadow .3s ease;
+    }
+    .card:hover{transform:translateY(-10px) scale(1.03) rotateX(2deg);box-shadow:0 12px 25px rgba(0,0,0,0.2),0 0 20px rgba(0,119,182,0.25)}
+    .card i{font-size:2rem;color:#0077b6;margin-bottom:15px}
+    .card h3{font-size:1.2rem;font-weight:bold;color:#0077b6;margin-bottom:10px}
+    .card p{font-size:.95rem;color:#555}
+    .card .btn{
+      margin-top:12px;display:inline-block;padding:8px 16px;
+      background:#0077b6;color:#fff;border-radius:6px;
+      text-decoration:none;font-weight:bold;transition:background .3s;
+    }
+    .card .btn:hover{background:#005f86}
+
+    /* Seções */
+    section{max-width:1200px;margin:50px auto;padding:0 20px}
+    section h2{color:#0077b6;font-size:2rem;margin-bottom:20px;text-align:center}
+
+    /* Rodapé */
+    footer{background:linear-gradient(90deg,#0077b6,#00b4d8);color:#fff;text-align:center;padding:25px 10px;margin-top:50px;font-size:.95rem}
+
+    /* WhatsApp */
+    .whatsapp-btn{position:fixed;bottom:20px;right:20px;background-color:#25d366;border-radius:50%;width:60px;height:60px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 8px rgba(0,0,0,0.2);transition:transform .3s ease, box-shadow .3s ease;z-index:1000;animation:pulse 2s infinite}
+    .whatsapp-btn:hover{transform:scale(1.1);box-shadow:0 6px 12px rgba(0,0,0,0.3)}
+    .whatsapp-btn img{width:35px;height:35px}
+
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+  </style>
+</head>
+<body>
+  <!-- Topo -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-item"><i class="fas fa-phone-alt"></i><a href="tel:+5511921060730">(11) 92106-0730</a></div>
+      <div class="topbar-item"><i class="fas fa-envelope"></i><a href="mailto:diogo@revedacoes.com.br">diogo@revedacoes.com.br</a></div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <img src="imagens/logo.jpg" alt="Logo Vedações Industriais" class="logo">
+      <nav class="nav">
+        <a href="index.html">Início</a>
+        <a href="servicos.html">Serviços</a>
+        <div class="dropdown">
+          <a href="produtos.html" class="active">Produtos ▾</a>
+          <div class="dropdown-content">
+            <a href="#"><i class="fas fa-cog"></i> Retentores</a>
+            <a href="#"><i class="fas fa-sliders-h"></i> Manta Cerâmica</a>
+            <a href="#"><i class="fas fa-expand"></i> Juntas de Expansão</a>
+            <a href="#"><i class="fas fa-cube"></i> Juntas Metálicas</a>
+            <a href="#"><i class="fas fa-layer-group"></i> Gaxetas</a>
+            <a href="#"><i class="fas fa-layer-group"></i> Tecido de Fibra de Vidro</a>
+            <a href="#"><i class="fas fa-layer-group"></i> Tecido de Aramida</a>
+            <a href="#"><i class="fas fa-layer-group"></i> Tecido de Fibra Cerâmica</a>
+            <a href="#"><i class="fas fa-file-alt"></i> Papelão Velomoidi/Guarnital</a>
+            <a href="#"><i class="fas fa-file-alt"></i> Papelão Hidráulico</a>
+            <a href="#"><i class="fas fa-circle"></i> Buchas de Teflon</a>
+            <a href="#"><i class="fas fa-layer-group"></i> Juntas de Envelopes</a>
+            <a href="#"><i class="fas fa-circle"></i> Lamelas</a>
+            <a href="#"><i class="fas fa-cog"></i> Selos</a>
+            <a href="#"><i class="fas fa-layer-group"></i> Sede de Válvulas em Teflon</a>
+            <a href="#"><i class="fas fa-layer-group"></i> Juntas de PTFE Expandido</a>
+          </div>
+        </div>
+        <a href="contato.html">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Nossos Produtos</h1>
+      <p>Soluções de alta qualidade para aplicações industriais.</p>
+    </div>
+  </section>
+
+  <!-- Produtos -->
+  <section>
+    <h2>Produtos</h2>
+    <div class="cards">
+      <div class="card"><i class="fas fa-cog"></i><h3>Retentores</h3><p>Soluções de vedação de alta performance para diferentes segmentos.</p><a href="produto1.html" class="btn">Saiba Mais</a></div>
+      <div class="card"><i class="fas fa-sliders-h"></i><h3>Manta Cerâmica</h3><p>Isolamento térmico eficiente e seguro para altas temperaturas</p><a href="produto2.html" class="btn">Saiba Mais</a></div>
+      <div class="card"><i class="fas fa-expand"></i><h3>Juntas de Expansão</h3><p>Compensação de dilatação térmica e movimentos em tubulações.</p><a href="produto3.html" class="btn">Saiba Mais</a></div>
+      <div class="card"><i class="fas fa-cube"></i><h3>Juntas Metálicas</h3><p>Projetadas para suportar condições extremas de pressão e temperatura.</p><a href="produto4.html" class="btn">Saiba Mais</a></div>
+      <div class="card"><i class="fas fa-layer-group"></i><h3>Gaxetas</h3><p>Vedação dinâmica e estática para diferentes tipos de equipamentos.</p><a href="produto5.html" class="btn">Saiba Mais</a></div>
+      <div class="card"><i class="fas fa-layer-group"></i><h3>Tecido de Fibra de Vidro</h3><p>Isolamento térmico e resistência para aplicações industriais.</p><a href="produto6.html" class="btn">Saiba Mais</a></div>
+      <div class="card"><i class="fas fa-layer-group"></i><h3>Tecido de Aramida</h3><p>Alta resistência mecânica e térmica para ambientes severos.</p><a href="produto7.html" class="btn">Saiba Mais</a></div>
+      <div class="card"><i class="fas fa-layer-group"></i><h3>Tecido de Fibra Cerâmica</h3><p>Excelente desempenho em altas temperaturas para isolamento.</p><a href="produto8.html" class="btn">Saiba Mais</a></div>
+      <div class="card"><i class="fas fa-file-alt"></i><h3>Papelão Velomoidi/Guarnital</h3><p>Juntas sob medida em fibras e elastômeros de alta qualidade.</p><a href="produto9.html" class="btn">Saiba Mais</a></div>
+      <div class="card"><i class="fas fa-file-alt"></i><h3>Papelão Hidráulico</h3><p>Vedações seguras e confiáveis para sistemas hidráulicos.</p><a href="produto10.html" class="btn">Saiba Mais</a></div>
+      <div class="card"><i class="fas fa-circle"></i><h3>Buchas de Teflon</h3><p>Resistência química e baixo atrito para aplicações críticas.</p><a href="produto11.html" class="btn">Saiba Mais</a></div>
+      <div class="card"><i class="fas fa-layer-group"></i><h3>Juntas de Envelopes</h3><p>Vedação eficiente para flanges e conexões industriais.</p><a href="produto12.html" class="btn">Saiba Mais</a></div>
+      <div class="card"><i class="fas fa-circle"></i><h3>Lamelas</h3><p>Vedação de alta performance para equipamentos industriais.</p><a href="produto13.html" class="btn">Saiba Mais</a></div>
+      <div class="card"><i class="fas fa-cog"></i><h3>Selos</h3><p>Vedação confiável para bombas, válvulas e compressores.</p><a href="produto14.html" class="btn">Saiba Mais</a></div>
+      <div class="card"><i class="fas fa-layer-group"></i><h3>Sedes de Válvulas em Teflon</h3><p>Alta resistência química e térmica para válvulas industriais.</p><a href="produto15.html" class="btn">Saiba Mais</a></div>
+      <div class="card"><i class="fas fa-layer-group"></i><h3>Juntas de PTFE Expandido</h3><p>Vedação versátil e resistente para diversas aplicações industriais.</p><a href="produto16.html" class="btn">Saiba Mais</a></div>
+    </div>
+  </section>
+
+  <!-- Diferenciais -->
+  <section>
+    <h2>Diferenciais</h2>
+    <div class="cards">
+      <div class="card"><i class="fas fa-microchip"></i><h3>Tecnologia de ponta</h3><p>Inovação constante na fabricação dos produtos.</p></div>
+      <div class="card"><i class="fas fa-certificate"></i><h3>Qualidade certificada</h3><p>Alto padrão de qualidade com certificações internacionais.</p></div>
+      <div class="card"><i class="fas fa-user-check"></i><h3>Atendimento personalizado</h3><p>Consultoria técnica especializada para cada cliente.</p></div>
+      <div class="card"><i class="fas fa-industry"></i><h3>Capacidade produtiva</h3><p>Atendimento a grandes volumes e projetos especiais.</p></div>
+    </div>
+  </section>
+
+  <!-- Segmentos -->
+  <section>
+    <h2>Segmentos Atendidos</h2>
+    <div class="cards">
+      <div class="card"><i class="fas fa-oil-can"></i><h3>Petroquímico</h3></div>
+      <div class="card"><i class="fas fa-car"></i><h3>Automotivo</h3></div>
+      <div class="card"><i class="fas fa-bolt"></i><h3>Energia</h3></div>
+      <div class="card"><i class="fas fa-scroll"></i><h3>Papel e Celulose</h3></div>
+      <div class="card"><i class="fas fa-hard-hat"></i><h3>Mineração</h3></div>
+      <div class="card"><i class="fas fa-flask"></i><h3>Químico e Farmacêutico</h3></div>
+    </div>
+  </section>
+
+  <!-- Compromisso Ambiental -->
+  <section>
+    <h2>Compromisso Ambiental</h2>
+    <div class="card">
+      <i class="fas fa-leaf"></i>
+      <p>Produzimos de forma sustentável, minimizando impactos ambientais através de processos eficientes e materiais ecológicos.</p>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="container"><p>© 2025 Vedações Industriais. Todos os direitos reservados.</p></div>
+  </footer>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/5511921060730?text=Olá! Gostaria de mais informações." class="whatsapp-btn" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </a>
+</body>
+</html>
