@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tecido de Fibra de Vidro</title>
+  <link rel="icon" href="imagens/logo.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" href="imagens/logo.jpg">
+  <style>
+    /* RESET */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, Helvetica, sans-serif; line-height: 1.6; color: #333; scroll-behavior: smooth; background: #f9f9f9; }
+    img { max-width: 100%; display: block; }
+
+    /* Barra superior */
+    .topbar { background: #0077b6; color: #fff; font-size: 14px; padding: 8px 0; }
+    .topbar .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; display: flex; justify-content: space-between; align-items: center; }
+    .topbar-item { display: flex; align-items: center; gap: 6px; }
+    .topbar-item i { color: #ffd700; }
+    .topbar-item a { color: #fff; text-decoration: none; transition: color 0.3s; }
+    .topbar-item a:hover { color: #ffd700; }
+
+    /* Cabeçalho fixo */
+    .site-header { background: #fff; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; }
+    .header-inner { max-width: 1200px; margin: auto; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { height: 55px; transition: transform 0.3s; }
+    .logo:hover { transform: scale(1.05); }
+    .nav a { margin-left: 20px; color: #0077b6; text-decoration: none; font-weight: bold; transition: color 0.3s, transform 0.2s; }
+    .nav a:hover { color: #ffd700; transform: scale(1.05); }
+
+    /* Dropdown Produtos */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  min-width: 260px;
+  max-height: 400px; /* limite de altura para não ficar gigante */
+  overflow-y: auto;  /* adiciona scroll interno */
+  box-shadow: 0px 6px 16px rgba(0,0,0,0.15);
+  border-radius: 10px;
+  display: none;
+  flex-direction: column;
+  padding: 8px 0;
+  z-index: 1000;
+}
+
+/* Scroll mais elegante */
+.dropdown-content::-webkit-scrollbar {
+  width: 6px;
+}
+.dropdown-content::-webkit-scrollbar-thumb {
+  background: #0077b6;
+  border-radius: 4px;
+}
+.dropdown-content::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+/* Links do menu */
+.dropdown-content a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #0077b6;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s, padding-left 0.3s;
+}
+
+/* Ícones */
+.dropdown-content a i {
+  font-size: 1rem;
+  color: #00b4d8;
+  width: 20px;
+  text-align: center;
+}
+
+/* Hover elegante */
+.dropdown-content a:hover {
+  background: #eaf6ff;
+  padding-left: 22px; /* pequeno efeito de deslocamento */
+  border-left: 4px solid #ffd700;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+
+    /* Hero */
+    .hero { height: 70vh; background: url("imagens/hero-fibra-vidro.jpg") center/cover no-repeat; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
+    .hero::after { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+    .hero-content { position: relative; z-index: 1; max-width: 750px; animation: fadeInUp 1s ease forwards; }
+    .hero h1 { font-size: 3rem; margin-bottom: 15px; text-shadow: 2px 2px 6px rgba(0,0,0,0.6); }
+    .hero p { margin-bottom: 20px; font-size: 1.2rem; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Botão padrão */
+    .btn { background-color: #0077b6; color: #fff; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: background 0.3s, transform 0.2s; display: inline-block; }
+    .btn:hover { background-color: #005f87; transform: scale(1.05); }
+
+    /* Seções */
+    .section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+    .section h2 { color: #0077b6; font-size: 2rem; margin-bottom: 15px; border-left: 6px solid #ffd700; padding-left: 12px; }
+    .section p { margin-bottom: 15px; text-align: justify; font-size: 1.05rem; }
+
+    /* Card igual imagem */
+    .card {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      max-width: 1000px;
+      margin: 30px auto;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    .card img {
+      width: 320px;
+      height: auto;
+      object-fit: cover;
+      border-right: 1px solid #eee;
+    }
+    .card-body {
+      padding: 20px;
+      text-align: left;
+    }
+    .card-body h3 {
+      font-size: 1.3rem;
+      color: #0077b6;
+      margin-bottom: 10px;
+    }
+    .card-body p {
+      font-size: 1rem;
+      color: #444;
+    }
+
+    /* Rodapé */
+    footer { background: #0077b6; color: #fff; text-align: center; padding: 25px 10px; margin-top: 50px; }
+
+    /* WhatsApp */
+    .whatsapp-btn { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; border-radius: 50%; width: 65px; height: 65px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: transform 0.2s ease, box-shadow 0.2s ease; z-index: 1000; }
+    .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 6px 12px rgba(0,0,0,0.3); }
+    .whatsapp-btn img { width: 38px; height: 38px; }
+  </style>
+</head>
+<body>
+  <!-- Topo -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-item"><i class="fas fa-phone-alt"></i><a href="tel:+5511921060730">(11) 92106-0730</a></div>
+      <div class="topbar-item"><i class="fas fa-envelope"></i><a href="mailto:diogo@revedacoes.com.br">diogo@revedacoes.com.br</a></div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <img src="imagens/logo.jpg" alt="Logo Vedações Industriais" class="logo">
+      <nav class="nav">
+        <a href="index.html">Início</a>
+        <a href="servicos.html">Serviços</a>
+        <div class="dropdown">
+          <a href="produtos.html">Produtos ▾</a>
+          <div class="dropdown-content">
+            <a href="produto1.html"><i class="fas fa-cog"></i> Retentores</a>
+            <a href="produto2.html"><i class="fas fa-sliders-h"></i> Manta Cerâmica</a>
+            <a href="produto3.html"><i class="fas fa-expand"></i> Juntas de Expansão</a>
+            <a href="produto4.html"><i class="fas fa-cube"></i> Juntas Metálicas</a>
+            <a href="produto5.html"><i class="fas fa-layer-group"></i> Gaxetas</a>
+            <a href="produto6.html"><i class="fas fa-layer-group"></i> Tecido de Fibra de Vidro</a>
+            <a href="produto7.html"><i class="fas fa-layer-group"></i> Tecido de Aramida</a>
+            <a href="produto8.html"><i class="fas fa-layer-group"></i> Tecido de Fibra Cerâmica</a>
+            <a href="produto9.html"><i class="fas fa-file-alt"></i> Papelão Velomoid/Guarnital</a>
+            <a href="produto10.html"><i class="fas fa-file-alt"></i> Papelão Hidráulico</a>
+            <a href="produto11.html"><i class="fas fa-circle"></i> Buchas de Teflon</a>
+            <a href="produto12.html"><i class="fas fa-layer-group"></i> Juntas Envelopes</a>
+            <a href="produto13.html"><i class="fas fa-layer-group"></i> Lamelas</a>
+            <a href="produto14.html"><i class="fas fa-cog"></i> Selos</a>
+            <a href="produto15.html"><i class="fas fa-layer-group"></i> Sede de Válvulas em Teflon</a>
+            <a href="produto16.html"><i class="fas fa-layer-group"></i> Juntas de PTFE Expandido</a>
+          </div>
+        </div>
+        <a href="contato.html">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Tecido de Fibra de Vidro</h1>
+      <p>Resistência térmica e mecânica para isolamento industrial de alta performance.</p>
+      <a href="contato.html" class="btn">Solicite um Orçamento</a>
+    </div>
+  </section>
+
+  <!-- Seção Produto -->
+  <section class="section">
+    <h2>Sobre o Produto</h2>
+    <p>O tecido de fibra de vidro é amplamente utilizado em aplicações industriais que exigem resistência a altas temperaturas, isolamento térmico e proteção mecânica. É ideal para fornos, dutos, tubulações, cortinas de solda e barreiras térmicas, proporcionando durabilidade e segurança em ambientes severos.</p>
+
+    <!-- Card igual imagem -->
+    <div class="card">
+      <img src="imagens/TECIDOFIBRADEVIDRO.jpeg" alt="Tecido de Fibra de Vidro">
+      <div class="card-body">
+        <h3>Tecido de Fibra de Vidro</h3>
+        <p>Disponível em diferentes gramaturas e acabamentos, garantindo a melhor solução para isolamento térmico e proteção industrial.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="container"><p>© 2025 Vedações Industriais. Todos os direitos reservados.</p></div>
+  </footer>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/5511921060730?text=Olá! Gostaria de mais informações sobre Tecido de Fibra de Vidro." class="whatsapp-btn" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </a>
+</body>
+</html>
