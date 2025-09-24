@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Gaxetas</title>
+  <link rel="icon" href="imagens/logo.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="icon" href="imagens/logo.jpg">
+  <style>
+    /* RESET */
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --blue:#0096db;
+      --blue-dark:#0077b6;
+      --gold:#ffd700;
+      --bg:#f9f9f9;
+    }
+    body{font-family:Arial, Helvetica, sans-serif;line-height:1.6;color:#333;background:var(--bg);scroll-behavior:smooth}
+    img{max-width:100%;display:block}
+
+    /* container util */
+    .container{max-width:1200px;margin:0 auto;padding:0 15px;display:flex;align-items:center;justify-content:space-between}
+
+    /* Topbar */
+    .topbar{background:var(--blue-dark);color:#fff;font-size:14px;padding:8px 0}
+    .topbar .container{display:flex;gap:12px;flex-wrap:wrap}
+    .topbar-item{display:flex;align-items:center;gap:8px;color:#fff}
+    .topbar-item i{color:var(--gold)}
+    .topbar-item a{color:#fff;text-decoration:none;transition:color .25s;font-size:13px;white-space:nowrap}
+    .topbar-item a:hover{color:var(--gold)}
+
+    /* Header */
+    .site-header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:120}
+    .header-inner{max-width:1200px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .logo{height:55px;transition:transform .25s}
+    .logo:hover{transform:scale(1.05)}
+    nav.nav{display:flex;align-items:center;gap:18px}
+    nav.nav a{color:var(--blue-dark);text-decoration:none;font-weight:700;transition:color .2s,transform .15s;padding:6px 8px}
+    nav.nav a:hover{color:var(--blue)}
+
+    /* Dropdown Produtos */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      min-width: 260px;
+      max-height: 400px; /* limite de altura para não ficar gigante */
+      overflow-y: auto;  /* adiciona scroll interno */
+      box-shadow: 0px 6px 16px rgba(0,0,0,0.15);
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      padding: 8px 0;
+      z-index: 1000;
+    }
+
+    /* Scroll mais elegante */
+    .dropdown-content::-webkit-scrollbar {
+      width: 6px;
+    }
+    .dropdown-content::-webkit-scrollbar-thumb {
+      background: #0077b6;
+      border-radius: 4px;
+    }
+    .dropdown-content::-webkit-scrollbar-track {
+      background: #f0f0f0;
+    }
+
+    /* Links do menu */
+    .dropdown-content a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #0077b6;
+      padding: 10px 16px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s, padding-left 0.3s;
+    }
+
+    /* Ícones */
+    .dropdown-content a i {
+      font-size: 1rem;
+      color: #00b4d8;
+      width: 20px;
+      text-align: center;
+    }
+
+    /* Hover elegante */
+    .dropdown-content a:hover {
+      background: #eaf6ff;
+      padding-left: 22px; /* pequeno efeito de deslocamento */
+      border-left: 4px solid #ffd700;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: flex;
+    }
+
+    /* Hero */
+    .hero{height:60vh;background:url("imagens/produto5.jpg") center/cover no-repeat;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff}
+    .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.55)}
+    .hero-content{position:relative;z-index:2;max-width:750px}
+    .hero h1{font-size:3rem;margin-bottom:12px;text-shadow:2px 2px 6px rgba(0,0,0,.6)}
+    .hero p{margin-bottom:16px;font-size:1.1rem}
+
+    /* Section */
+    .section{max-width:1200px;margin:60px auto;padding:0 20px}
+    .section h2{color:var(--blue-dark);font-size:2rem;margin-bottom:15px;border-left:6px solid var(--gold);padding-left:12px}
+    .section p{margin-bottom:15px;text-align:justify;font-size:1.02rem}
+
+    /* Cards grid */
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;margin-top:20px}
+    .card{background:#fff;padding:20px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);transition:transform .25s,box-shadow .25s;text-align:center}
+    .card:hover{transform:translateY(-6px);box-shadow:0 8px 18px rgba(0,0,0,.12)}
+    .card img{border-radius:10px;margin-bottom:12px;max-height:180px;object-fit:cover}
+    .card h3{margin:12px 0;font-size:1.15rem;color:var(--blue-dark)}
+
+    /* Descrições */
+    .card p{
+      font-size:1rem;
+      color:#333;
+      text-align:justify;
+      line-height:1.6;
+      padding:0 6px;
+      font-family:"Segoe UI", Arial, sans-serif;
+    }
+
+    /* Footer */
+    footer{background:linear-gradient(90deg,var(--blue-dark),var(--blue));color:#fff;text-align:center;padding:25px 10px;margin-top:40px;font-size:0.95rem}
+
+    /* WhatsApp */
+    .whatsapp-btn{position:fixed;bottom:20px;right:20px;background:#25d366;border-radius:50%;width:65px;height:65px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.18);z-index:9999}
+    .whatsapp-btn img{width:38px;height:38px}
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-item"><i class="fas fa-phone-alt"></i><a href="tel:+5511921060730">(11) 92106-0730</a></div>
+      <div class="topbar-item"><i class="fas fa-envelope"></i><a href="mailto:diogo@revedacoes.com.br">diogo@revedacoes.com.br</a></div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <img src="imagens/logo.jpg" alt="Logo Vedações Industriais" class="logo" />
+      <nav class="nav">
+        <a href="index.html">Início</a>
+        <a href="servicos.html">Serviços</a>
+        <div class="dropdown">
+          <a href="#">Produtos ▾</a>
+          <div class="dropdown-content">
+            <a href="produto1.html"><i class="fas fa-cog"></i> Retentores</a>
+            <a href="produto2.html"><i class="fas fa-sliders-h"></i> Manta Cerâmica</a>
+            <a href="produto3.html"><i class="fas fa-expand"></i> Juntas de Expansão</a>
+            <a href="produto4.html"><i class="fas fa-cube"></i> Juntas Metálicas</a>
+            <a href="produto5.html"><i class="fas fa-layer-group"></i> Gaxetas</a>
+            <a href="produto6.html"><i class="fas fa-layer-group"></i> Tecido de Fibra de Vidro</a>
+            <a href="produto7.html"><i class="fas fa-layer-group"></i> Tecido de Aramida</a>
+            <a href="produto8.html"><i class="fas fa-layer-group"></i> Tecido de Fibra Cerâmica</a>
+            <a href="produto9.html"><i class="fas fa-file-alt"></i> Papelão Velomoidi/Guarnital</a>
+            <a href="produto10.html"><i class="fas fa-file-alt"></i> Papelão Hidráulico</a>
+            <a href="produto11.html"><i class="fas fa-circle"></i> Buchas de Teflon</a>
+            <a href="produto12.html"><i class="fas fa-layer-group"></i> Juntas Envelopes</a>
+            <a href="produto13.html"><i class="fas fa-layer-group"></i> Lamelas</a>
+            <a href="produto14.html"><i class="fas fa-cog"></i> Selos</a>
+            <a href="produto15.html"><i class="fas fa-layer-group"></i> Sede de Válvulas em Teflon</a>
+            <a href="produto16.html"><i class="fas fa-layer-group"></i> Juntas de PTFE Expandido</a>
+          </div>
+        </div>
+        <a href="contato.html">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>GAXETAS</h1>
+      <p>Vedação de qualidade para prolongar a vida útil dos seus equipamentos e produtos.</p>
+      <a class="btn" href="contato.html" style="background:var(--blue-dark);color:#fff;padding:12px 24px;border-radius:6px;text-decoration:none;font-weight:700;">Solicite um Orçamento</a>
+    </div>
+  </section>
+
+  <!-- Produtos / Conteúdo -->
+  <section class="section">
+    <h2>Sobre o Produto</h2>
+    <p>As gaxetas de vedação são soluções versáteis e confiáveis para vedar e proteger eixos, bombas, válvulas e outros equipamentos industriais.</p>
+
+    <div class="cards">
+      <!-- Cards -->
+      <div class="card"><img src="imagens/gaxetafibraceramica2.webp" alt="Gaxeta de Fibra Cerâmica"><h3>Gaxeta de Fibra Cerâmica</h3><p>Indicada para aplicações em temperaturas extremas, suportando até 1260 °C. Resistência térmica e baixa condutividade.</p></div>
+      <div class="card"><img src="imagens/gaxetafibradevidro.webp" alt="Gaxeta de Fibra de Vidro"><h3>Gaxeta de Fibra de Vidro</h3><p>Para isolamento e vedação em altas temperaturas, resistente à abrasão e produtos químicos.</p></div>
+      <div class="card"><img src="imagens/gaxetasinteticagrafitada.png" alt="Gaxeta Sintética Grafitada"><h3>Gaxeta Sintética Grafitada</h3><p>Para bombas, válvulas e equipamentos rotativos. Excelente vedação e resistência química.</p></div>
+      <div class="card"><img src="imagens/gaxetasinteticateflonada.png" alt="Gaxeta Sintética Teflonada"><h3>Gaxeta Sintética Teflonada</h3><p>Alta resistência a químicos e baixo atrito. Ideal para bombas e válvulas.</p></div>
+      <div class="card"><img src="imagens/SINTETICA GRAFITADA COM COBRE.png" alt="Gaxeta Grafitada com Cobre"><h3>Gaxeta Grafitada com Cobre</h3><p>Fios de cobre entrelaçados com grafite expandido para vedação robusta.</p></div>
+      <div class="card"><img src="imagens/gaxetadealgodãoensebada.webp" alt="Gaxeta de Algodão Ensebada"><h3>Gaxeta de Algodão Ensebada</h3><p>Flexível e econômica, feita com fios de algodão impregnados com lubrificante.</p></div>
+      <div class="card"><img src="imagens/gaxetacarbonografitado.png" alt="Gaxeta de Algodão Grafitada"><h3>Gaxeta de Algodão Grafitada</h3><p>Confeccionada com algodão e grafite, indicada para aplicações moderadas.</p></div>
+      <div class="card"><img src="imagens/GaxetadePTFEcomreforçoKevlar.webp" alt="Gaxeta de PTFE com Kevlar"><h3>Gaxeta de PTFE com Kevlar</h3><p>Combina fibras de aramida (Kevlar®) com PTFE, garantindo resistência mecânica.</p></div>
+      <div class="card"><img src="imagens/gaxetateflonpuro.jpg" alt="Gaxeta PTFE Puro"><h3>Gaxeta PTFE Puro</h3><p>Vedação 100% em PTFE, ideal para ambientes químicos severos.</p></div>
+      <div class="card"><img src="imagens/gaxetaPTFElubrificado.png" alt="Gaxeta PTFE Lubrificado"><h3>Gaxeta PTFE Lubrificado</h3><p>Fabricada com PTFE expandido e lubrificado, reduz atrito e facilita instalação.</p></div>
+      <div class="card"><img src="imagens/gaxetaPTFEGRAFITADA.png" alt="Gaxeta PTFE Grafitada"><h3>Gaxeta PTFE Grafitada</h3><p>Combina resistência química do PTFE com lubrificação do grafite.</p></div>
+      <div class="card"><img src="imagens/gaxetaPTFEGRAFITADACOMCANTODEARAMIDA.jpg" alt="Gaxeta PTFE Grafitada com Aramida"><h3>Gaxeta PTFE Grafitada com Aramida</h3><p>Estrutura híbrida reforçada com aramida, indicada para alta abrasividade.</p></div>
+      <div class="card"><img src="imagens/GRAFITEFLEXIVELCOME SEMINCONEL.png" alt="Gaxeta de Grafite Flexível"><h3>Gaxeta de Grafite Flexível</h3><p>Feita com folhas de grafite expandido laminadas, com ou sem reforço metálico.</p></div>
+      <div class="card"><img src="imagens/gaxetacarbonografitado.png" alt="Gaxeta Carbono Grafitado"><h3>Gaxeta Carbono Grafitado</h3><p>Fibras de carbono impregnadas com grafite, resistentes a altas pressões.</p></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Vedações Industriais. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- WhatsApp -->
+  <a class="whatsapp-btn" href="https://wa.me/5511921060730?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </a>
+
+</body>
+</html>
